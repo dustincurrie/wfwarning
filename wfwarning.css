@@ -1,0 +1,36 @@
+#wfwarning-banner {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #000;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+}
+#wfwarning-banner h2 {
+  margin: 0;
+  text-shadow: #bbb 1px 1px 1px;
+  color: #fff;
+  padding-left: 30px;
+  display: inline;
+  font-size: 1.2em;
+}
+#wfwarning-banner p.wfwarning-description {
+  display: inline;
+  padding-left: 20px;
+  color: #fff;
+  font-size: .8em;
+}
+#wfwarning-banner p.wfwarning-description a {
+  color: #fff;
+  text-decoration: underline;
+}
+body {
+  padding-top: 21px !important;
+}
+/* Work with admin_menu module */
+body.admin-menu #wfwarning-banner {
+  padding-top: 20px !important;
+}

@@ -1,0 +1,4 @@
+; $Id$
+name = "Workflow Warning"
+description = "Adds a banner at the top of a site indicating that you are in non-production environment"
+core = 6.x

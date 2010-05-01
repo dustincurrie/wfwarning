@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * Implementation of hook_menu().
+ */
+function wfwarning_menu() {
+  $items = array();
+  $items['admin/settings/workflow-warning'] = array(
+    'title' => 'Workflow Warning',
+    'description' => 'Adjust workflow warning settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('wfwarning_admin_settings'),
+    'access arguments' => array('administer workflow warning'),
+    'file' => 'wfwarning.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function wfwarning_perm() {
+  return array('administer workflow warning');
+}
+
+/**
+ * Implementation of hook_help().
+ */
+function wfwarning_help($path, $arg) {
+  switch ($path) {
+    case 'admin/settings/wfwarning':
+      return t('The Workflow Warning modules provides a banner at the top of all pages to identify which version of a site you are currently working in. This is intended to be used by developers that use separate Drupal installs for development, staging and production servers in their workflow.');
+    case 'admin/help#workflow-warning':
+      $output = '<p>' . t('The Workflow Warning modules provides a banner at the top of all pages to identify which version of a site you are currently working in. This is intended to be used by developers that use separate Drupal installs for development, staging and production servers in their workflow.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function wfwarning_init() {
+  $path = drupal_get_path('module', 'wfwarning');
+  drupal_add_css($path .'/wfwarning.css', 'module', 'all', FALSE);
+}
+/**
+ * Implementation of hook_footer().
+ */
+function wfwarning_footer($main = 0) {
+  $content  = '<div id="wfwarning-banner">';
+  $content .= '<div><h2>' . variable_get('wfwarning_title', 'Non-Production') . '</h2><p class="wfwarning-description">' . variable_get('wfwarning_descr', 'This is a non-production environment') . '</p></div>';
+  $content .= '</div>';
+  return $content;
+}
+
